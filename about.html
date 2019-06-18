@@ -49,7 +49,9 @@
 
 <h3> Out of Office is a website for anyone looking to find a space to work/study around London.</h3>
 
-  <h3>Use our webpage to browse independent cafes and libraries around London, and find a place that best suits you're working needs!
+  <h3>Use our webpage to
+    <ins><a href="index.html">browse</a></ins>
+    independent cafes and libraries around London, and find a place that best suits your working needs!
 </h3>
 
 <h2>Index</h2>
@@ -89,6 +91,37 @@
     <img src="icons/quiet.jpg" class="img-fluid" style="width:60;height:60px">
     Noise not permitted
 </div>
+
+<div>
+  <h2>Got any suggestions?</h2>
+  <h3> If you can't see your local cafe/workspace on here then let us know by filling in the form below. </h3>
+
+
+  <form>
+
+Suggested workspace:<br>
+    <input type="text" name="Workspace name">
+
+  <form action="" method="post">
+    <input type="checkbox" name="features1" value="Food" checked>Food available<br>
+    <input type="checkbox" name="features2" value="Drink">Coffee available<br>
+    <input type="checkbox" name="features3" value="Noise">Noisy
+    <input type="checkbox" name="features4" value="Quiet">Quiet
+    <input type="checkbox" name="features5" value="Plugs">Plugs available
+    <input type="checkbox" name="features6" value="Music">Good music
+
+<div {padding: 10px}>
+    <form action="/action_page.php">
+  <select name="Workspace type">
+    <option value="cafe">Cafe</option>
+    <option value="library">Library</option>
+    <option value="Other">Other</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</div>
+  </form>
+
 
 </body>
 </html>
