@@ -10,7 +10,7 @@ h1 {
 h2 {
         color: rgb(19, 18, 18);
         font-family: Helvetica, Arial, sans-serif;
-        font-size: 2.0em;
+        font-size: 1.75.0em;
         font-weight: bold;
         text-align: left;
 }
@@ -18,6 +18,14 @@ h2 {
 h3 {
         color: rgb(19, 18, 18);
         font-family: Helvetica, Arial, sans-serif;
+        font-size: 1.5em;
+        font-weight: normal;
+        text-align: left;
+}
+
+h4 {
+        color: rgb(132, 31, 53);
+        font-family: "Bodoni MT", Didot, "Didot LT STD", "Book Antiqua", Garamond, "Times New Roman", serif;
         font-size: 1.5em;
         font-weight: normal;
         text-align: left;
