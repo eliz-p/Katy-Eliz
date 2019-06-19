@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Out of Office</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link type="text/css" rel="stylesheet" href="styles.css">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Google Maps Multiple Markers</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+
+            <script>
+function sortListDir() {
+  var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+  list = document.getElementById("id01");
+  switching = true;
+  dir = "asc";
+  while (switching) {
+    switching = false;
+    b = list.getElementsByTagName("LI");
+    for (i = 0; i < (b.length - 1); i++) {
+      shouldSwitch = false;
+
+      if (dir == "asc") {
+        if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+          shouldSwitch = true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+      // Each time a switch is done, increase switchcount by 1:
+      switchcount ++;
+    } else {
+      /* If no switching has been done AND the direction is "asc",
+      set the direction to "desc" and run the while loop again. */
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+</script>
+  </head>
+  <body>
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Out of Office</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="coffeeshops.html">List</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+          <main role="main" class="container">
+
+  <div>
+  <br>
+  <br>
+  <h1> Out of Office </h1>
+  </div>
+
+    <div id="map" style="width: 1000px; height: 800px;"></div>
+
+    <script type="text/javascript">
+      var locations = [
+        ['Ozone Coffee', 51.524879, -0.086834, 5],
+        ['TimberYard Seven Dials', 51.30463, 0.07385],
+        ['FuckCoffee/Jamestown Coffee', 51.527665, -0.067903, 4],
+        ['The Hoxton', 51.525650, -0.082731, 3],
+        ['Pitfield London', 51.527419, -0.083782, 2],
+        ['The Brew, Eagle House', 51.527988, -0.090524, 1],
+        ['Fix 126', 51.526177, -0.0802644, 6],
+        ['Kahaila Cafe', 51.523963, -0.071534, 7],
+        ['Bishopsgate Institue', 51.518768, -0.079376, 8],
+        ['One Shot Coffee', 51.537720, -0.145233, 9],
+        ['Burr and Co', 51.522960, -0.125562, 10],
+        ['Victoria and Albert Library', 51.496093, -0.171860],
+        ['British Library', 51.529863, -0.128805],
+        ['Prufrock Coffee', 51.519933, -0.109351],
+        ['Wellcome Library', 51.526091, -0.134054],
+        ['Zippola', 51.663998, -0.081808],
+        ['Beans & Barley', 51.584389, -0.100297],
+      ];
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 13,
+        center: new google.maps.LatLng(51.525575, -0.070789),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+    </script>
+
+    <br>
+<button onclick="sortListDir()">Sort</button>
+
+<br>
+<ul id="id01">
+<li>
+    <h2 class="workspace name"><a>Ozone Coffee</a></h2>
+    <h3 class="workspace type">Café and Restaurant</h3>
+        <div>
+            <p>
+              <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+            </p>
+              </li>
+          </div>
+
+<li>
+      <h2 class="workspace name"><a>Beans & Barley</a></h2>
+      <h3 class="workspace type">Café and Bar</h3>
+          <div>
+              <p>
+                <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              </p>
+              <p class="description">
+                Great smoothies and chilled out vibes. They do amazing brunch food all day.
+              </p>
+            </li>
+            </div>
+
+<li>
+    <h2 class="workspace name"><a>Wellcome Library</a></h2>
+    <h3 class="workspace type">Library (reader card required)</h3>
+        <div>
+            <p>
+              <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/quiet.jpg" class="img-fluid" alt="Responsive image" width=20 height=20>
+            </p>
+            <p class="description">
+              There’s a reading room overlooking the main gallery which is bright and comfy! The librarians are also very helpful and keen to promote their collection.
+            </p>
+            </li>
+          </div>
+
+<li>
+          <h2><a>Jamestown/ FuckCoffee</a></h2>
+          <h3>Café</h3>
+              <div>
+                  <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                  <p class="description">
+                    Bohemian style coffee shop on Bethnal Green road. Great for settling down with a book or some work in a comfy seat.
+                  </p>
+                </li>
+                </div>
+
+<li>
+    <h2 class="workspace name"><a>TimberYard Seven Dials</a></h2>
+    <h3 class="workspace type">Café</h3>
+        <div>
+            <p>
+              <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+              <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+            </p>
+            <p class="description">
+              A young professional cafe with goood WiFi.
+            </p>
+          </li>
+          </div>
+
+<li>
+          <h2 class="workspace name"><a>Zippola</a></h2>
+          <h3 class="workspace type">Café</h3>
+              <div>
+                  <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                  <p class="description">
+                    Vintage italian café serving coffee and gelato and adored by locals. They let you study for as long as you fancy!
+                  </p>
+                </li>
+                </div>
+
+<li>
+          <h2 class="workspace name"><a>The Hoxton</a></h2>
+          <h3 class="workspace type">Hotel</h3>
+              <div>
+                <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                  <p class="description">
+                    A laptop friendly hotel bar and café. Great for working with a drink in hand.
+                </p>
+              </li>
+              </div>
+
+<li>
+        <h2 class="workspace name"><a>Prufrock Coffee</a></h2>
+        <h3 class="workspace type">Cafe</h3>
+            <div>
+              <p>
+                  <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                </p>
+                <p class="description">
+                  Serving some of the best coffee in London, which means it can get a bit busy.
+              </p>
+            </li>
+            </div>
+
+<li>
+          <h2 class="workspace name"><a>Pitfield London</a></h2>
+          <h3 class="workspace type">Café</h3>
+              <div>
+                  <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                </li>
+              </div>
+
+<li>
+            <h2 class="workspace name"><a>The Brew, Eagle House</a></h2>
+            <h3 class="workspace type">Café and Co-working Space</h3>
+              <div>
+                  <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                  <p class="description">
+                    A café and workspace specifically made for remote workers with super fast wifi and plugs at every table. A five minute walk from Old Street station.
+                  </p>
+                </li>
+              </div>
+
+<li>
+            <h2 class="workspace name"><a>FIX 126</a></h2>
+            <h3 class="workspace type">Café</h3>
+              <div>
+                  <p>
+                    <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                  <p class="description">
+                    Fast WiFi and good coffee.
+                  </p>
+                </li>
+              </div>
+
+<li>
+            <h2 class="workspace name"><a>Kahaila Café</a></h2>
+            <h3 class="workspace type">Café</h3>
+                <div>
+                    <p>
+                      <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/music.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    </p>
+                    <p class="description">
+                      Quirky independent café with plenty of space to study and delicious cakes.
+                    </p>
+                  </li>
+                </div>
+
+<li>
+            <h2 class="workspace name"><a>Bishopsgate Institute</a></h2>
+            <h3 class="workspace type">Public Library</h3>
+                <div>
+                    <p>
+                      <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/quiet.jpg" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    </p>
+                  </li>
+            </div>
+
+
+            <li>
+            <h2 class="workspace name"><a>Victoria and Albert Library</a></h2>
+            <h3 class="workspace type">Public Library</h3>
+          <div>
+                    <p>
+                      <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/quiet.jpg" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    </p>
+                  </li>
+          </div>
+
+          <li>
+          <h2 class="workspace name"><a>British Library</a></h2>
+          <h3 class="workspace type">Public Library</h3>
+              <div>
+                  <p>
+                    <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    <img src="icons/quiet.jpg" class="img-fluid" alt="Responsive image" width=20 height=20>
+                  </p>
+                </li>
+                </div>
+
+            <li>
+            <h2 class="workspace name"><a>Burr and Co</a></h2>
+            <h3 class="workspace type">Café</h3>
+                  <div>
+                    <p>
+                      <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    </p>
+                    <p class="description">
+                      Inspired by Victorian coffeehouses, they serve fresh coffee as well as food. They are laptop friendly and their desks have plenty of plug sockets.
+                    </p>
+                  </li>
+                </div>
+
+<li>
+            <h2 class="workspace name"><a>One Shot Coffee</a></h2>
+            <h3 class="workspace type">Café</h3>
+                  <div>
+                    <p>
+                      <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/talking.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                      <img src="icons/food.png" class="img-fluid" alt="Responsive image" width=20 height=20>
+                    </p>
+                    <p class="description">
+                      Not cheap for coffee, but has a big back room lit with skylights, some cool art and has loads of plugs + big tables + good WiFi
+                    </p>
+                  </li>
+                </div>
+
+  </body>
+  </html>
