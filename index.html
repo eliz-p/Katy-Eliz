@@ -11,6 +11,49 @@
     <title>Google Maps Multiple Markers</title>
     <script src="http://maps.google.com/maps/api/js?sensor=false"
             type="text/javascript"></script>
+
+            <script>
+function sortListDir() {
+ var list, i, switching, b, shouldSwitch, dir, switchcount = 0;
+ list = document.getElementById("id01");
+ switching = true;
+ dir = "asc";
+ while (switching) {
+   switching = false;
+   b = list.getElementsByTagName("LI");
+   for (i = 0; i < (b.length - 1); i++) {
+     shouldSwitch = false;
+
+     if (dir == "asc") {
+       if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+         shouldSwitch = true;
+         break;
+       }
+     } else if (dir == "desc") {
+       if (b[i].innerHTML.toLowerCase() < b[i + 1].innerHTML.toLowerCase()) {
+         shouldSwitch= true;
+         break;
+       }
+     }
+   }
+   if (shouldSwitch) {
+     /* If a switch has been marked, make the switch
+     and mark that a switch has been done: */
+     b[i].parentNode.insertBefore(b[i + 1], b[i]);
+     switching = true;
+     // Each time a switch is done, increase switchcount by 1:
+     switchcount ++;
+   } else {
+     /* If no switching has been done AND the direction is "asc",
+     set the direction to "desc" and run the while loop again. */
+     if (switchcount == 0 && dir == "asc") {
+       dir = "desc";
+       switching = true;
+     }
+   }
+ }
+}
+</script>
   </head>
   <body>
 
@@ -98,7 +141,13 @@
     </script>
 
     <br>
+<button onclick="sortListDir()">Sort</button>
 
+<br>
+
+<ul id="id01">
+
+<li>
     <h2 class="workspace name"><a>Ozone Coffee</a></h2>
     <h3 class="workspace type">Café and Restaurant</h3>
         <div>
@@ -113,9 +162,11 @@
             <p class="description">
               Amazing coffee and many laptop users. It gets very busy at lunch time!
             </p>
+            </li>
           </div>
           <br>
 
+<li>
       <h2 class="workspace name"><a>Beans & Barley</a></h2>
       <h3 class="workspace type">Café and Bar</h3>
           <div>
@@ -130,9 +181,11 @@
               <p class="description">
                 Great smoothies and chilled out vibes. They do amazing brunch food all day.
               </p>
+              </li>
             </div>
             <br>
 
+<li>
     <h2 class="workspace name"><a>Wellcome Library</a></h2>
     <h3 class="workspace type">Library (reader card required)</h3>
         <div>
@@ -144,9 +197,11 @@
             <p class="description">
               There’s a reading room overlooking the main gallery which is bright and comfy! The librarians are also very helpful and keen to promote their collection.
             </p>
+            </li>
           </div>
           <br>
 
+<li>
           <h2><a>Jamestown/ FuckCoffee</a></h2>
           <h3>Café</h3>
               <div>
@@ -161,9 +216,11 @@
                   <p class="description">
                     Bohemian style coffee shop on Bethnal Green road. Great for settling down with a book or some work in a comfy seat.
                   </p>
+                  </li>
                 </div>
                 <br>
 
+<li>
     <h2 class="workspace name"><a>TimberYard Seven Dials</a></h2>
     <h3 class="workspace type">Café</h3>
         <div>
@@ -178,9 +235,11 @@
             <p class="description">
               A young professional cafe with goood WiFi.
             </p>
+            </li>
           </div>
           <br>
 
+<li>
           <h2 class="workspace name"><a>Zippola</a></h2>
           <h3 class="workspace type">Café</h3>
               <div>
@@ -195,9 +254,11 @@
                   <p class="description">
                     Vintage italian café serving coffee and gelato and adored by locals. They let you study for as long as you fancy!
                   </p>
+                  </li>
                 </div>
                 <br>
 
+<li>
           <h2 class="workspace name"><a>The Hoxton</a></h2>
           <h3 class="workspace type">Hotel</h3>
               <div>
@@ -211,9 +272,11 @@
                   <p class="description">
                     A laptop friendly hotel bar and café. Great for working with a drink in hand.
                 </p>
+                </li>
               </div>
               <br>
 
+<li>
         <h2 class="workspace name"><a>Prufrock Coffee</a></h2>
         <h3 class="workspace type">Cafe</h3>
             <div>
@@ -227,9 +290,11 @@
                 <p class="description">
                   Serving some of the best coffee in London, which means it can get a bit busy.
               </p>
+              </li>
             </div>
             <br>
 
+<li>
           <h2 class="workspace name"><a>Pitfield London</a></h2>
           <h3 class="workspace type">Café</h3>
               <div>
@@ -243,9 +308,11 @@
                   <p class="description">
                     Good lunch and nice vibes, plug sockets are sparse.
                   </p>
+                  </li>
               </div>
               <br>
 
+<li>
             <h2 class="workspace name"><a>The Brew, Eagle House</a></h2>
             <h3 class="workspace type">Café and Co-working Space</h3>
               <div>
@@ -258,9 +325,11 @@
                   <p class="description">
                     A café and workspace specifically made for remote workers with super fast wifi and plugs at every table. A five minute walk from Old Street station.
                   </p>
+                  </li>
               </div>
               <br>
 
+<li>
             <h2 class="workspace name"><a>FIX 126</a></h2>
             <h3 class="workspace type">Café</h3>
               <div>
@@ -273,9 +342,11 @@
                   <p class="description">
                     Fast WiFi and good coffee.
                   </p>
+                  </li>
               </div>
               <br>
 
+<li>
             <h2 class="workspace name"><a>Kahaila Café</a></h2>
             <h3 class="workspace type">Café</h3>
                 <div>
@@ -290,9 +361,11 @@
                     <p class="description">
                       Quirky independent café with plenty of space to study and delicious cakes.
                     </p>
+                    </li>
                 </div>
                 <br>
 
+<li>
             <h2 class="workspace name"><a>Bishopsgate Institute</a></h2>
             <h3 class="workspace type">Public Library</h3>
                 <div>
@@ -301,8 +374,10 @@
                       <img src="icons/wifi.png" class="img-fluid" alt="Responsive image" width=20 height=20>
                       <img src="icons/quiet.jpg" class="img-fluid" alt="Responsive image" width=20 height=20>
                     </p>
+                    </li>
             </div>
 
+<li>
             <h2 class="workspace name"><a>Victoria and Albert Library</a></h2>
             <h3 class="workspace type">Public Library</h3>
               <div>
@@ -315,8 +390,9 @@
                       A beautiful space for serious work. Library users have to leave their bags in a locker and onyl pencils and laptops are allowed.
                     </p>
               </div>
+              </li>
               <br>
-
+<li>
           <h2 class="workspace name"><a>British Library</a></h2>
           <h3 class="workspace type">Public Library</h3>
               <div>
@@ -328,9 +404,10 @@
                   <p class="description">
                     Very busy over the exam period but a great quiet place to work in either the member's reading rooms or general areas.
                   </p>
+                  </li>
                 </div>
                 <br>
-
+</i>
             <h2 class="workspace name"><a>Burr and Co</a></h2>
             <h3 class="workspace type">Café</h3>
                   <div>
@@ -344,12 +421,14 @@
                     <p class="description">
                       Inspired by Victorian coffeehouses, they serve fresh coffee as well as food. They are laptop friendly and their desks have plenty of plug sockets.
                     </p>
+                    </li>
                 </div>
                 <br>
-
+<li>
             <h2 class="workspace name"><a>One Shot Coffee</a></h2>
             <h3 class="workspace type">Café</h3>
                   <div>
+
                     <p>
                       <img src="icons/coffee.png" class="img-fluid" alt="Responsive image" width=20 height=20>
                       <img src="icons/plug.png" class="img-fluid" alt="Responsive image" width=20 height=20>
@@ -360,6 +439,7 @@
                     <p class="description">
                       Not cheap for coffee, but has a big back room lit with skylights, some cool art and has loads of plugs + big tables + good WiFi
                     </p>
+                  </li>
                 </div>
                 <br>
 
